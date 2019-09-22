@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #Install Python properties
 sudo apt-get install python-software-properties
 
@@ -14,3 +16,4 @@ node -v
 npm -v
 
 #Enjoy Node js
+echo "Node and Npm Installed Enjoy !!"
