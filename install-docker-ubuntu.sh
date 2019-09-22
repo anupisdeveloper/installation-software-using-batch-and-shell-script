@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #Download docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
@@ -19,3 +21,4 @@ sudo usermod -aG docker ${USER}
 su - ${USER}
 id -nG
 
+echo "Docker Installed Successfully Enjoy !!"
