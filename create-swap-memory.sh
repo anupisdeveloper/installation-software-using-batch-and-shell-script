@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #We can see if the system has any configured swap by typing:
 sudo swapon --show
 
@@ -8,7 +10,7 @@ free -h
 df -h
 
 #Create a Swap File ((It take 1GB For swap)
-sudo fallocate -l 1G /swapfile
+sudo dd if=/dev/zero of=/swapfile bs=1G count=2
 
 #We can verify that the correct amount of space was reserved by typing
 ls -lh /swapfile
@@ -24,3 +26,16 @@ sudo mkswap /swapfile
 
 #We can verify that the swap is available by typing
 sudo swapon --show
+
+# Enable the swap file at boot time by editing the /etc/fstab file:
+
+result=$(cat /etc/fstab | grep '/swapfile swap swap defaults 0 0')
+string='/swapfile swap swap defaults 0 0'
+if [ ! -z "$result" -a "$result" != " " ]; then
+        echo "Settings already exists"
+else
+   echo "Setting up new configuration"
+   echo "/swapfile swap swap defaults 0 0" >> /etc/fstab
+fi
+
+echo "Enjoy Extra memory from your SSD As RAM !!"
